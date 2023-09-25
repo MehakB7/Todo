@@ -2,6 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const { strategy } = require("./Config/Passport");
+const passport = require("passport");
+const { userRouter } = require("./routes/user");
+
 require("dotenv").config();
 
 const app = express();
@@ -30,12 +34,14 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  res.send("Hello there nice to meet you");
-});
-
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
+passport.use(strategy);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/auth", userRouter);
 
 app.listen(4000, () => {
   console.log("server start listening to port");
