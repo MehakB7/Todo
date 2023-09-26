@@ -5,6 +5,7 @@ const MongoStore = require("connect-mongo");
 const { strategy } = require("./Config/Passport");
 const passport = require("passport");
 const { userRouter } = require("./routes/user");
+const { todoRouter } = require("./routes/todo");
 
 require("dotenv").config();
 
@@ -42,6 +43,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/auth", userRouter);
+app.use("/todo", todoRouter);
 
 app.listen(4000, () => {
   console.log("server start listening to port");
