@@ -22,13 +22,30 @@ const createTodo = async (req, res) => {
   }
 };
 
-const updateTodo = (req, res) => {};
+const updateTodo = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const updatedNote = await Notes.findByIdAndUpdate(
+      id,
+      { $set: { ...body } },
+      { new: true }
+    );
+    if (!updatedNote) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "Todo not found" });
+    }
+
+    res.status(StatusCodes.OK).json({ updatedNote });
+  } catch (e) {
+    res.status(StatusCodes.BAD_REQUEST).json({ message: e.message });
+  }
+};
 
 const getTodos = async (req, res) => {
   const query = req.query;
   const status = req.query.status;
-
-  console.log("inisde this query", query);
 
   if (status) {
   } else {
@@ -51,7 +68,6 @@ const getTodos = async (req, res) => {
 
 const getTodoById = async (req, res) => {
   const id = req.params.id;
-  console.log("todos", id);
 
   try {
     const todo = await Todo.findOne(
@@ -74,7 +90,7 @@ const deleteTodo = async (req, res) => {
 
   try {
     const todo = await Todo.deleteOne({ _id: id });
-    console.log("inside this todos", todos);
+
     if (todo) {
       res.status(200).json({ message: "resource deleted successfully" });
     } else {
@@ -90,4 +106,5 @@ module.exports = {
   getTodos,
   getTodoById,
   deleteTodo,
+  updateTodo,
 };
