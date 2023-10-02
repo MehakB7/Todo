@@ -1,0 +1,31 @@
+.button {
+  padding:1rem;
+  color:white;
+  border:none;
+  border-radius: 4px;
+ 
+  &--primary{
+    background-color: rgb(16,147,169);
+  }
+  &--danger{
+    background-color: rgb(208,29,54);
+  }
+
+  &--l{
+    width :90%;
+  }
+  &--s{
+    width :40%;
+  }
+
+  &--m{
+    width:55%
+  }
+
+  &--xs{
+    width:20%;
+  }
+}
+
+
+

@@ -1,0 +1,19 @@
+.footer{
+  display: flex;
+  justify-content: space-around;
+  border:1px solid grey;
+ 
+  margin-top:1rem;
+  &__status_filter{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__radio_wrapper{
+    width:100%;
+    display: flex;
+    justify-content: flex-start   
+  }
+}

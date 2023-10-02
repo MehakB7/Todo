@@ -1,0 +1,31 @@
+.listItem{
+  border:1px solid grey;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:1rem;
+  padding:0.5rem;
+  &__opertaion{
+    display: flex;
+    justify-content: space-between;
+   align-items: center;
+  }
+  &__text{
+      margin-left:1rem;
+      &--true{
+        color:rgba(193,48,73,1);
+        text-decoration:line-through
+      }
+  }
+  &__delete{
+    width:30px;
+    height:30px;
+  }
+  &__selectbox{
+     padding:4px;
+
+  }
+
+
+}
